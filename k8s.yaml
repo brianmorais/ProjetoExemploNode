@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: projeto-exemplo-svc
+spec:
+  selector:
+    app: projeto-exemplo
+  ports:
+  - port: 3000
+    targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: projeto-exemplo-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: projeto-exemplo
+  template:
+    metadata:
+      labels:
+        app: projeto-exemplo
+    spec:
+      containers:
+      - name: projeto-exemplo
+        image: moraisbrian/projetoexemplonode:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
+        env:
+          - name: NODE_ENV
+            value: "production"
+          - name: VIA_CEP_URL
+            value: "https://viacep.com.br/ws/{CEP}/json"
+          - name: PORT
+            value: "3000"
