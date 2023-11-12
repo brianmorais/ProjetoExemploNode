@@ -23,13 +23,13 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    - name: Get the latest version tag
-      id: get-latest-tag
-      run: echo "::set-output name=VERSION::$(git describe --tags --abbrev=0 || echo 'v0')"
+    - name: Get the latest version
+      id: get-latest-version
+      run: echo "::set-output name=VERSION::$(git describe --tags --abbrev=0 || echo '0')"
 
     - name: Determine the next version
       id: determine-next-version
-      run: echo "::set-output name=VERSION::v$((1 + $(echo ${{ steps.get-latest-tag.outputs.VERSION }} | cut -c 2-)))"
+      run: echo "::set-output name=VERSION::$((${{ steps.get-latest-version.outputs.VERSION }} + 1))"
 
     - name: Set Docker Image Tag
       run: echo "::set-env name=DOCKER_IMAGE_TAG::${{ steps.determine-next-version.outputs.VERSION }}"
