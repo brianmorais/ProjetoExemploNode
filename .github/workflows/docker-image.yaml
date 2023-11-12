@@ -12,7 +12,6 @@ jobs:
 
     env:
       DOCKER_IMAGE_NAME: moraisbrian/projetoexemplonode
-      DOCKER_IMAGE_TAG: v1
 
     steps:
     - name: Checkout Repository
@@ -26,7 +25,7 @@ jobs:
 
     - name: Get the latest version tag
       id: get-latest-tag
-      run: echo "::set-output name=VERSION::$(git describe --tags --abbrev=0)"
+      run: echo "::set-output name=VERSION::$(git describe --tags --abbrev=0 || echo 'v0')"
 
     - name: Determine the next version
       id: determine-next-version
@@ -36,10 +35,10 @@ jobs:
       run: echo "::set-env name=DOCKER_IMAGE_TAG::${{ steps.determine-next-version.outputs.VERSION }}"
 
     - name: Build Docker Image
-      run: docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG .
+      run: docker build -t $DOCKER_IMAGE_NAME:${{ env.DOCKER_IMAGE_TAG }} .
 
     - name: Push Docker Image
       run: |
-        docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
-        docker tag $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG $DOCKER_IMAGE_NAME:latest
+        docker push $DOCKER_IMAGE_NAME:${{ env.DOCKER_IMAGE_TAG }}
+        docker tag $DOCKER_IMAGE_NAME:${{ env.DOCKER_IMAGE_TAG }} $DOCKER_IMAGE_NAME:latest
         docker push $DOCKER_IMAGE_NAME:latest
