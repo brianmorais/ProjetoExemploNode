@@ -14,11 +14,6 @@ RUN npm run build
 
 FROM node:slim
 
-# Commented to load in kubernetes
-# ENV NODE_ENV production
-# ENV VIA_CEP_URL https://viacep.com.br/ws/{CEP}/json
-# ENV PORT 3000
-
 USER node
 
 # Create app directory
