@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: projeto-exemplo
-        image: moraisbrian/projetoexemplonode:latest
+        image: brianmorais/projetoexemplonode:latest
         resources:
           limits:
             memory: 100Mi

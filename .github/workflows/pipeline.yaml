@@ -39,5 +39,5 @@ jobs:
       with:
         push: true
         tags: |
-          moraisbrian/projetoexemplonode:v${{ github.run_number }}
-          moraisbrian/projetoexemplonode:latest
+          brianmorais/projetoexemplonode:v${{ github.run_number }}
+          brianmorais/projetoexemplonode:latest
