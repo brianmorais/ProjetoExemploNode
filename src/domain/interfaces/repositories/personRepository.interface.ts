@@ -1,6 +1,6 @@
-import { Person } from "../../entities/person";
+import { Person } from '../../entities/person';
 
 export interface IPersonRepository {
-    getPersons(): Promise<Person[]>;
-    addPerson(person: Person): Promise<Person>; 
+  getPersons(): Promise<Person[]>;
+  addPerson(person: Person): Promise<Person>;
 }

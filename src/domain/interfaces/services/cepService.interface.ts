@@ -1,5 +1,5 @@
-import { Address } from "../../valueObjects/address";
+import { Address } from '../../valueObjects/address';
 
 export interface ICepService {
-    getAddressByCep(cep: string): Promise<Address>;
+  getAddressByCep(cep: string): Promise<Address>;
 }

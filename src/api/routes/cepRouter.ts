@@ -4,13 +4,17 @@ import { CepController } from '../controllers/cepController';
 
 @injectable()
 export class CepRouter {
-    public router: Router = Router();
+  public router: Router = Router();
 
-    constructor(private cepController: CepController) {
-        this.setRoutes();
-    }
+  constructor(private cepController: CepController) {
+    this.setRoutes();
+  }
 
-    private setRoutes(): void {
-        this.router.get('/api/cep/:cep', async (request: Request, response: Response) => this.cepController.getAddressByCep(request, response))
-    }
+  private setRoutes(): void {
+    this.router.get(
+      '/api/cep/:cep',
+      async (request: Request, response: Response) =>
+        this.cepController.getAddressByCep(request, response),
+    );
+  }
 }

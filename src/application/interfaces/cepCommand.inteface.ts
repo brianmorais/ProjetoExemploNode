@@ -1,5 +1,5 @@
-import { AddressModel } from "../models/addressModel";
+import { AddressModel } from '../models/addressModel';
 
 export interface ICepCommand {
-    getAddressByCep(cep: string): Promise<AddressModel>;
+  getAddressByCep(cep: string): Promise<AddressModel>;
 }

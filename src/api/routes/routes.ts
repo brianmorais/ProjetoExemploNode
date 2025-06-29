@@ -5,14 +5,17 @@ import { PersonRouter } from './personRouter';
 
 @injectable()
 export class Routes {
-    public router: Router = Router();
+  public router: Router = Router();
 
-    constructor(private cepRouter: CepRouter, private personRouter: PersonRouter) {
-        this.setRoutes();
-    }
+  constructor(
+    private cepRouter: CepRouter,
+    private personRouter: PersonRouter,
+  ) {
+    this.setRoutes();
+  }
 
-    private setRoutes(): void {
-        this.router.use(this.cepRouter.router);
-        this.router.use(this.personRouter.router);
-    }
+  private setRoutes(): void {
+    this.router.use(this.cepRouter.router);
+    this.router.use(this.personRouter.router);
+  }
 }

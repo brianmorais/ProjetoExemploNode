@@ -4,20 +4,20 @@ import { Routes } from './routes/routes';
 
 @injectable()
 export class Server {
-	public app: Application = express();
+  public app: Application = express();
 
-	constructor(private routes: Routes) {
-		this.routes = routes;
-		this.setMiddlewares();
-		this.setRoutes();
-	}
+  constructor(private routes: Routes) {
+    this.routes = routes;
+    this.setMiddlewares();
+    this.setRoutes();
+  }
 
-	private setMiddlewares(): void {
-		this.app.use(json());
-		this.app.use(urlencoded({ extended: false }));
-	}
+  private setMiddlewares(): void {
+    this.app.use(json());
+    this.app.use(urlencoded({ extended: false }));
+  }
 
-	private setRoutes(): void {
-		this.app.use(this.routes.router);
-	}
+  private setRoutes(): void {
+    this.app.use(this.routes.router);
+  }
 }
